@@ -1,48 +1,29 @@
 # THE KINGDOM OF LOVE — AURALIA
 ## La canción de dos luces · ANDRÉS & VANNESA
 
-Videojuego web 2D de aventuras con estética retro de 16 bits, exploración, combate y una mecánica original de resonancia.
+**El repositorio ya está inicializado.** Para cargar el juego completo (código, imágenes, PWA y documentación) falta ejecutar una sola vez el script incluido en el paquete V5.
 
-### El reino
-En Auralia, cinco regiones mantenían su armonía gracias a la Campana del Alba. El Afinador del Silencio quebró su cristal en cinco fragmentos. ANDRÉS y VANNESA recorren el reino para recuperar las notas y devolver la música a sus habitantes.
+### Subida inicial del videojuego
+1. Descarga y descomprime [Auralia V5](https://github.com/mixmeltco/the-kingdom-of-love) (paquete entregado en la conversación).
+2. Instala Git for Windows si aún no está instalado: https://git-scm.com/download/win.
+3. Abre PowerShell en la carpeta descomprimida que contiene `index.html`.
+4. Ejecuta:
+   ```powershell
+   Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+   .\SUBIR_A_GITHUB.ps1
+   ```
+5. Pulsa Enter para aceptar el repositorio predeterminado `https://github.com/mixmeltco/the-kingdom-of-love.git` y completa la autenticación de GitHub si se solicita.
 
-### Cinco regiones · quince capítulos
-1. Valle de las Campanas
-2. Bosque de las Luciérnagas
-3. Mar de Vidrio
-4. Cumbres del Invierno Azul
-5. Ciudad del Eclipse
+El script clona el repositorio existente, copia el proyecto completo y hace push a `main`, conservando el historial actual.
 
-Cada región contiene tres capítulos y culmina con un guardián.
+### Publicación web
+El workflow automático está en `.github/workflows/pages.yml`. **Después de subir el proyecto completo**, abre Settings → Pages → Build and deployment → Source y selecciona **GitHub Actions**. Luego revisa la pestaña Actions.
 
-### Protagonistas
-- **ANDRÉS:** combate cercano y fuerza.
-- **VANNESA:** magia y agilidad.
-- Ambos pueden completar la aventura y activar resonadores.
+Guía detallada: [PUBLICAR_EN_GITHUB_PAGES.md](PUBLICAR_EN_GITHUB_PAGES.md).
 
-### Controles
-**Teclado:** A/D o flechas para moverse; Espacio/W/Flecha arriba para saltar; Shift para correr; F para habilidad; E para resonancia; Escape para pausar.
+### Concepto del juego
+En Auralia, cinco regiones se mantenían en armonía gracias a la Campana del Alba. El Afinador del Silencio quebró su cristal en cinco fragmentos. ANDRÉS y VANNESA recorren el reino para recuperar las notas y devolver la música.
 
-**Móvil:** controles táctiles en pantalla. Se recomienda orientación horizontal.
+Regiones: Valle de las Campanas · Bosque de las Luciérnagas · Mar de Vidrio · Cumbres del Invierno Azul · Ciudad del Eclipse.
 
-### Ejecutar localmente
-Requiere Git (para publicar) y Python (para servidor local):
-```powershell
-python -m http.server 8000
-```
-Abre http://localhost:8000. Phaser 3 se carga desde un CDN en la primera visita. El Service Worker intenta conservar los recursos para visitas posteriores.
-
-### Publicar
-El repositorio usa GitHub Pages mediante GitHub Actions. El workflow está en `.github/workflows/pages.yml`. Cada push a `main` despliega el sitio. En GitHub, selecciona **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-
-Para subir el proyecto V5 completo desde la carpeta descomprimida de su ZIP, ejecuta:
-```powershell
-.\SUBIR_A_GITHUB.ps1
-```
-El script clona este repositorio, copia el proyecto encima de la versión inicial, crea un commit y hace push. Git for Windows y autenticación de GitHub (Git Credential Manager) son necesarios.
-
-### Personalización
-Edita `src/config.js` para cambiar nombres, dedicatoria, carta final, recuerdos secretos y créditos. Los recuerdos están vacíos por defecto.
-
-### Estado de calidad
-La estructura y sintaxis se pueden validar con `node tools/validate_project.cjs`. La validación estática no sustituye el recorrido manual de los quince capítulos ni pruebas en teléfonos físicos. Consulta `QA_REPORT.md` y `BIBLIA_DE_DISENO_AURALIA.md` dentro del paquete de proyecto para conocer el alcance y los pendientes.
+**Importante:** hasta completar la subida inicial, este repositorio todavía no contiene el juego desplegable. El workflow no publicará el videojuego hasta que `index.html`, `src/` y `assets/` estén cargados.
