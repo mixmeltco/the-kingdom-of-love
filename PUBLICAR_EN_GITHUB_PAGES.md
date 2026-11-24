@@ -14,7 +14,7 @@ Repositorio: https://github.com/mixmeltco/the-kingdom-of-love
 5. Pulsa Enter para aceptar el repositorio predeterminado `https://github.com/mixmeltco/the-kingdom-of-love.git`.
 6. Completa la autenticación GitHub en el navegador si Git Credential Manager la solicita.
 
-El script clona el repositorio actual antes de copiar la carpeta del juego. Esto conserva el primer commit existente y evita un error de historial no relacionado.
+El script clona el repositorio existente, copia el proyecto completo y hace push a `main`. Esto conserva el primer commit y evita un error de historial no relacionado.
 
 ## Activar GitHub Pages
 Después de subir el proyecto completo:
@@ -25,12 +25,12 @@ Después de subir el proyecto completo:
 No actives Pages antes de que el videojuego completo esté subido: el repositorio inicial solo contiene documentación y el workflow.
 
 ## Configurar la URL pública
-Cuando GitHub Pages muestre la dirección, normalmente `https://mixmeltco.github.io/the-kingdom-of-love/`, en la carpeta del proyecto ejecuta:
+Cuando GitHub Pages muestre la dirección, normalmente `https://mixmeltco.github.io/the-kingdom-of-love/`, en la carpeta local descomprimida ejecuta:
 ```powershell
 node .\tools\set-github-pages-url.cjs "https://mixmeltco.github.io/the-kingdom-of-love/"
-git add index.html
-git commit -m "Set canonical GitHub Pages URL and WhatsApp preview"
-git push
+.\SUBIR_A_GITHUB.ps1
 ```
+El segundo comando vuelve a copiar y subir los cambios de configuración para que la URL canónica y la vista previa social de WhatsApp sean correctas.
 
-La partida guarda el avance localmente en el navegador de cada dispositivo; no se sincroniza entre teléfono y computador.
+## Comprobación y guardado
+Abre la URL publicada en una ventana privada y después en un teléfono. El progreso queda guardado localmente en el navegador de cada dispositivo y no se sincroniza automáticamente entre teléfono y computador.
