@@ -17,7 +17,7 @@ if ($remote -notmatch '^https://github\.com/[^/]+/[^/]+(?:\.git)?$') {
 }
 
 $workDir = Join-Path $env:TEMP ("kingdom-of-love-publish-" + [Guid]::NewGuid().ToString("N"))
-Write-Host "Clonando el repositorio..." -ForegroundColor Cyan
+Write-Host "Clonando el repositorio existente..." -ForegroundColor Cyan
 git clone --branch main $remote $workDir
 if ($LASTEXITCODE -ne 0) { throw "No se pudo clonar el repositorio. Comprueba tu acceso a GitHub." }
 
@@ -48,11 +48,11 @@ try {
     git push origin main
     if ($LASTEXITCODE -ne 0) { throw "El push falló. Comprueba la autenticación y los permisos de escritura." }
     Write-Host "Proyecto completo enviado a GitHub correctamente." -ForegroundColor Green
-    Write-Host "Ahora activa Settings > Pages > Source: GitHub Actions." -ForegroundColor Cyan
+    Write-Host "Ahora activa Settings > Pages > Build and deployment > Source: GitHub Actions." -ForegroundColor Cyan
     Set-Location $PSScriptRoot
     Remove-Item $workDir -Recurse -Force
 } catch {
     Set-Location $PSScriptRoot
-    Write-Host "No se borró la carpeta temporal para facilitar el diagnóstico: $workDir" -ForegroundColor Yellow
+    Write-Host "Se conservó la carpeta temporal para facilitar el diagnóstico: $workDir" -ForegroundColor Yellow
     throw
 }
